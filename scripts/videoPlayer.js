@@ -1,11 +1,6 @@
-export const videoPlayerInit = () => {
-    // video-player
-    // video-button__play
-    // video-button__stop
-    // video-time__passed
-    // video-progress
-    // video-time__total
+import { addZero } from './supScrip.js'
 
+export const videoPlayerInit = () => {
     const videoPlayer = document.querySelector('.video-player');
     const videoButtonPlay = document.querySelector('.video-button__play');
     const videoButtonStop = document.querySelector('.video-button__stop');
@@ -35,8 +30,6 @@ export const videoPlayerInit = () => {
         videoPlayer.currentTime = 0;
     }
 
-    const addZero = n => n < 10 ? '0' + n : n;
-
     videoPlayer.addEventListener('click', togglePlayer);
     videoButtonPlay.addEventListener('click', togglePlayer);
 
@@ -57,7 +50,6 @@ export const videoPlayerInit = () => {
         let minuteTotal = Math.floor(duration / 60);
         let secondsTotal = Math.floor(duration % 60);
 
-        const addZero = n => n < 10 ? '0' + n : n;
         videoTimePassed.textContent = `${addZero(minutePassed)}:${addZero(secondsPassed)}`;
         videoTimeTotal.textContent = `${addZero(minuteTotal)}:${addZero(secondsTotal)}`;
 
