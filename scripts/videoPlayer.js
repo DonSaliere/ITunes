@@ -10,6 +10,13 @@ export const videoPlayerInit = () => {
     const videoVolume = document.querySelector('.video-volume');
     const videoFullscreen = document.querySelector('.fa-external-link');
 
+    const videoVolueUp = document.querySelector('.fa-volume-up');
+    const videoVolueDown = document.querySelector('.volumeDown');
+
+    let prevVolume = 1;
+    
+
+
     const toggleICon = () => {
         if (videoPlayer.paused) {
             videoButtonPlay.classList.remove('fa-pause');
@@ -76,7 +83,30 @@ export const videoPlayerInit = () => {
 
     videoVolume.addEventListener('input' , () => {
         videoPlayer.volume = videoVolume.value / 100;
+        prevVolume =  videoVolume.value; 
     })
 
-    videoPlayer.value =  videoPlayer.volume * 100;
+    videoVolume.value =  videoPlayer.volume * 100;
+
+    videoVolueDown.addEventListener('click', () => {
+       
+        if( videoVolume.value != 0) {
+            prevVolume =  videoVolume.value; 
+            videoPlayer.volume = 0;
+            videoVolume.value =  0;
+            videoVolueDown.classList.remove('fa-volume-down');
+            videoVolueDown.classList.add('fa-volume-off');
+        } else {
+            videoVolume.value = prevVolume
+            videoPlayer.volume = videoVolume.value / 100;
+            videoVolueDown.classList.remove('fa-volume-off');
+            videoVolueDown.classList.add('fa-volume-down');
+        }
+       
+    });
+
+    videoVolueUp.addEventListener('click', () => {
+        videoPlayer.volume = 1;
+        videoVolume.value =  100;
+    });
 };
