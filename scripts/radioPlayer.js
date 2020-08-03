@@ -12,7 +12,7 @@ export const radioPlayerInit = () => {
     radioStop.disabled = true;
 
     const changleIconPlay = () => {
-        if(audio.paused){
+        if (audio.paused) {
             radio.classList.remove('play');
             radioStop.classList.add('fa-play');
             radioStop.classList.remove('fa-stop');
@@ -30,7 +30,7 @@ export const radioPlayerInit = () => {
 
     radioNavigation.addEventListener('change', event => {
         const target = event.target;
-        const parrent = target.closest('.radio-item'); 
+        const parrent = target.closest('.radio-item');
         selectItem(parrent);
         const title = parrent.querySelector('.radio-name').textContent;
         radioHeaderBig.textContent = title;
@@ -43,11 +43,16 @@ export const radioPlayerInit = () => {
     });
 
     radioStop.addEventListener('click', () => {
-        if(audio.paused) {
+        if (audio.paused) {
             audio.play();
         } else {
             audio.pause();
         }
         changleIconPlay();
     });
+
+    radioPlayerInit.stop = () => {
+        audio.pause();
+        changleIconPlay();
+    }
 };
