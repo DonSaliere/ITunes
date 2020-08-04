@@ -85,9 +85,7 @@ export const videoPlayerInit = () => {
         videoPlayer.volume = videoVolume.value / 100;
         prevVolume =  videoVolume.value; 
     })
-
-    videoVolume.value =  videoPlayer.volume * 100;
-
+    
     videoVolueDown.addEventListener('click', () => {
        
         if( videoVolume.value != 0) {
@@ -109,4 +107,6 @@ export const videoPlayerInit = () => {
         videoPlayer.volume = 1;
         videoVolume.value =  100;
     });
+
+    videoVolume.value =  videoPlayer.volume * 100;
 };

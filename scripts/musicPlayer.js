@@ -28,6 +28,9 @@ export const musicPlayerInit = () => {
         } else {
             audioPlayer.play();
         }
+        audioPlayer.addEventListener('canplay', () => {
+            updateTime();
+        })
     };
 
     const prevTrack = () => {
@@ -80,7 +83,7 @@ export const musicPlayerInit = () => {
         audioPlayer.play();
     });
 
-    audioPlayer.addEventListener('timeupdate', () => {
+    const updateTime = () => {
         const duration = audioPlayer.duration;
         const currentTime = audioPlayer.currentTime;
         const progress = (currentTime / duration) * 100;
@@ -95,7 +98,9 @@ export const musicPlayerInit = () => {
 
         audioTimePassed.textContent = `${addZero(minutesPassed)}:${addZero(secondsPassed)}`
         audioTimeTotal.textContent = `${addZero(minutesTotal)}:${addZero(secondsTotal)}`
-    });
+    };
+
+    audioPlayer.addEventListener('timeupdate', updateTime)
 
     audioProgress.addEventListener('click', event => {
         const x = event.offsetX; 
